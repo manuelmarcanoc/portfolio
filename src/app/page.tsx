@@ -1,6 +1,7 @@
 'use client';
 
 import { portfolioData } from '@/app/portfolio-data';
+import { placeholderImages } from '@/lib/placeholder-images.json';
 import {
   AboutIcon,
   BriefcaseIcon,
@@ -9,10 +10,8 @@ import {
   GraduationCapIcon,
   LanguagesIcon,
   MailIcon,
-  MessageCircleIcon,
 } from '@/components/portfolio-icons';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -28,6 +27,7 @@ import {
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 type SectionId =
@@ -49,7 +49,7 @@ const sections: {
     id: 'about',
     label: 'Sobre Mí',
     icon: AboutIcon,
-    style: { top: '20%', left: '15%' },
+    style: { top: '15%', left: '15%' },
     className: 'w-32 h-32 md:w-40 md:h-40',
   },
   {
@@ -94,10 +94,25 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
 
   switch (section) {
     case 'about':
+      const aboutImage = placeholderImages.find(p => p.id === 'about-me');
       return (
-        <p className="text-base sm:text-lg leading-relaxed text-foreground/80">
-          {portfolioData.about}
-        </p>
+        <div className="flex flex-col sm:flex-row gap-6 items-center">
+            {aboutImage && (
+              <div className="flex-shrink-0">
+                <Image
+                  src={aboutImage.src}
+                  alt="Retrato de Manuel Marcano"
+                  width={aboutImage.width}
+                  height={aboutImage.height}
+                  className="rounded-full border-4 border-primary shadow-lg"
+                  data-ai-hint={aboutImage['data-ai-hint']}
+                />
+              </div>
+            )}
+            <p className="text-base sm:text-lg leading-relaxed text-foreground/80">
+              {portfolioData.about}
+            </p>
+        </div>
       );
     case 'education':
       return (
@@ -230,7 +245,7 @@ export default function Home() {
           <button
             key={section.id}
             onClick={() => setActiveSection(section.id)}
-            className={`absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 ${section.className}`}
+            className={`absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 animate-float ${section.className}`}
             style={section.style}
             aria-label={`Abrir sección ${section.label}`}
           >
@@ -243,7 +258,7 @@ export default function Home() {
          <a
             href={portfolioData.cvUrl}
             download
-            className="absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 w-28 h-28 md:w-32 md:h-32"
+            className="absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 w-28 h-28 md:w-32 md:h-32 animate-float"
             style={{ top: '65%', left: '40%' }}
             aria-label="Descargar CV"
           >
