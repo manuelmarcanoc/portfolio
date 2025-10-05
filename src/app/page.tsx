@@ -109,7 +109,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 <div className="flex-grow w-px bg-border" />
               </div>
               <div>
-                <p className="font-semibold text-accent font-headline">
+                <p className="font-semibold text-accent font-display">
                   {edu.period}
                 </p>
                 <h4 className="font-bold text-lg">{edu.title}</h4>
@@ -129,7 +129,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 <div className="flex-grow w-px bg-border" />
               </div>
               <div className='flex-1'>
-                <h4 className="font-bold text-lg font-headline">{exp.role}</h4>
+                <h4 className="font-bold text-lg font-display">{exp.role}</h4>
                 <p className="text-muted-foreground mb-2">{exp.description}</p>
                 {exp.details && (
                   <ul className="list-disc list-inside space-y-1 text-foreground/80">
@@ -147,7 +147,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       return (
         <div className="space-y-8">
           <div>
-            <h4 className="font-bold text-lg font-headline mb-3">Habilidades Técnicas</h4>
+            <h4 className="font-bold text-lg font-display mb-3">Habilidades Técnicas</h4>
             <div className='space-y-4'>
             {portfolioData.technicalSkills.map((skill, index) => (
               <div key={index}>
@@ -163,7 +163,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
           </div>
           <Separator />
           <div>
-            <h4 className="font-bold text-lg font-headline mb-3">Habilidades Personales</h4>
+            <h4 className="font-bold text-lg font-display mb-3">Habilidades Personales</h4>
             <div className="flex flex-wrap gap-2">
               {portfolioData.softSkills.map((item, i) => (
                 <Badge key={i} variant="secondary" className="text-sm">{item}</Badge>
@@ -176,9 +176,9 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       return (
          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
            {portfolioData.languages.map((lang, index) => (
-             <Card key={index} className="bg-secondary/50">
+             <Card key={index} className="bg-secondary/50 border-2 border-primary">
                <CardHeader>
-                 <CardTitle className="font-headline">{lang.name}</CardTitle>
+                 <CardTitle className="font-display">{lang.name}</CardTitle>
                  <CardDescription className='text-primary font-bold text-lg'>{lang.level}</CardDescription>
                </CardHeader>
              </Card>
@@ -215,12 +215,12 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-full relative overflow-hidden flex flex-col items-center justify-center p-4 bg-background">
+    <main className="min-h-screen w-full relative overflow-hidden flex flex-col items-center justify-center p-4 bg-background text-outline">
       <div className="text-center z-10 mb-8 md:mb-16">
-        <h1 className="text-5xl md:text-7xl font-bold font-headline text-accent">
+        <h1 className="text-6xl md:text-8xl font-bold font-headline text-primary text-outline-black">
           {portfolioData.name}
         </h1>
-        <p className="text-xl md:text-2xl text-accent/80 mt-2">
+        <p className="text-2xl md:text-4xl text-primary/90 mt-2 font-headline-script">
           {portfolioData.title}
         </p>
       </div>
@@ -230,12 +230,12 @@ export default function Home() {
           <button
             key={section.id}
             onClick={() => setActiveSection(section.id)}
-            className={`absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground transition-all duration-300 ease-in-out hover:bg-primary hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 ${section.className}`}
+            className={`absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 ${section.className}`}
             style={section.style}
             aria-label={`Abrir sección ${section.label}`}
           >
-            <section.icon className="w-1/2 h-1/2" />
-            <span className="font-headline text-sm md:text-base font-semibold mt-1">
+            <section.icon className="w-1/3 h-1/3" />
+            <span className="font-display text-sm md:text-base font-bold mt-1 uppercase">
               {section.label}
             </span>
           </button>
@@ -243,25 +243,25 @@ export default function Home() {
          <a
             href={portfolioData.cvUrl}
             download
-            className="absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground transition-all duration-300 ease-in-out hover:bg-primary hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 w-28 h-28 md:w-32 md:h-32"
+            className="absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 w-28 h-28 md:w-32 md:h-32"
             style={{ top: '65%', left: '40%' }}
             aria-label="Descargar CV"
           >
-            <DownloadIcon className="w-1/2 h-1/2" />
-            <span className="font-headline text-sm md:text-base font-semibold mt-1">
+            <DownloadIcon className="w-1/3 h-1/3" />
+            <span className="font-display text-sm md:text-base font-bold mt-1 uppercase">
               Descargar CV
             </span>
           </a>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="max-w-md md:max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-md md:max-w-2xl max-h-[80vh] overflow-y-auto bg-background/80 backdrop-blur-md border-primary text-primary">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold font-headline text-accent">
+            <DialogTitle className="text-3xl font-bold font-display text-primary uppercase">
               {getSectionTitle(activeSection)}
             </DialogTitle>
           </DialogHeader>
-          <div className="py-4">
+          <div className="py-4 text-foreground/90 font-sans">
              <SectionContent section={activeSection} />
           </div>
         </DialogContent>

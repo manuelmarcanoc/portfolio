@@ -11,7 +11,9 @@ export default {
     extend: {
       fontFamily: {
         body: ['PT Sans', 'sans-serif'],
-        headline: ['Poppins', 'sans-serif'],
+        headline: ['Lobster', 'cursive'],
+        'headline-script': ['Passion One', 'sans-serif'],
+        display: ['Anton', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -93,7 +95,20 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      textShadow: {
+        'outline-black': '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+      }
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addUtilities, theme }: { addUtilities: any, theme: any }) {
+      const newUtilities = {
+        '.text-outline': {
+          textShadow: theme('textShadow.outline-black'),
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 } satisfies Config;
