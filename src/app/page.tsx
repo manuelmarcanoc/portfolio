@@ -26,7 +26,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { Mail, MapPin, Phone, X } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -270,17 +270,20 @@ export default function Home() {
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="p-0 max-w-md md:max-w-2xl max-h-[80vh] bg-window border-4 border-window-border shadow-window-shadow">
-            <DialogHeader className="h-8 bg-window-title-bar flex flex-row items-center justify-between px-2 border-b-4 border-window-border">
-                <DialogTitle className="font-display text-window-title-bar-text text-lg">
-                    {getSectionTitle(activeSection)}
-                </DialogTitle>
-                <button
-                onClick={() => setActiveSection(null)}
-                className="w-6 h-6 bg-window-close-button border-2 border-window-border flex items-center justify-center text-black"
-                >
-                <X size={16} strokeWidth={3} />
-                </button>
+        <DialogContent className="p-0 max-w-md md:max-w-2xl max-h-[80vh] bg-window-bg border-4 border-window-border shadow-window-shadow rounded-none">
+            <DialogHeader className="h-8 bg-window-title-bar flex flex-row items-center justify-between px-2 border-b-4 border-window-border cursor-move">
+                <div className='flex items-center gap-2'>
+                    <button
+                        onClick={() => setActiveSection(null)}
+                        className="w-5 h-5 bg-window-close-button border-2 border-window-border flex items-center justify-center text-black font-mono font-black text-xs"
+                        aria-label="Cerrar"
+                    >
+                        X
+                    </button>
+                    <DialogTitle className="font-display text-window-title-bar-text text-lg">
+                        {getSectionTitle(activeSection)}
+                    </DialogTitle>
+                </div>
             </DialogHeader>
             <div className="p-6 overflow-y-auto">
               <div className="font-sans text-foreground/90">
