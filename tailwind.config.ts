@@ -67,11 +67,21 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        window: {
+          DEFAULT: 'hsl(var(--window-bg))',
+          border: 'hsl(var(--window-border-color))',
+          'title-bar': 'hsl(var(--window-title-bar-bg))',
+          'title-bar-text': 'hsl(var(--window-title-bar-text))',
+          'close-button': 'hsl(var(--window-close-button-bg))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      boxShadow: {
+        'window-shadow': '5px 5px 0px 0px hsl(var(--window-border-color))',
       },
       keyframes: {
         'accordion-down': {

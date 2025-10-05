@@ -26,7 +26,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, X } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -270,15 +270,23 @@ export default function Home() {
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="max-w-md md:max-w-2xl max-h-[80vh] overflow-y-auto bg-background/80 backdrop-blur-md border-primary text-primary">
-          <DialogHeader>
-            <DialogTitle className="text-3xl font-bold font-display text-primary uppercase">
-              {getSectionTitle(activeSection)}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="py-4 text-foreground/90 font-sans">
-             <SectionContent section={activeSection} />
-          </div>
+        <DialogContent className="p-0 max-w-md md:max-w-2xl max-h-[80vh] bg-window border-4 border-window-border shadow-window-shadow">
+            <div className="h-8 bg-window-title-bar flex items-center justify-between px-2 border-b-4 border-window-border">
+                <span className="font-display text-window-title-bar-text text-lg">
+                    {getSectionTitle(activeSection)}
+                </span>
+                <button
+                onClick={() => setActiveSection(null)}
+                className="w-6 h-6 bg-window-close-button border-2 border-window-border flex items-center justify-center text-black"
+                >
+                <X size={16} strokeWidth={3} />
+                </button>
+            </div>
+            <div className="p-6 overflow-y-auto">
+              <div className="font-sans text-foreground/90">
+                <SectionContent section={activeSection} />
+              </div>
+            </div>
         </DialogContent>
       </Dialog>
     </main>
