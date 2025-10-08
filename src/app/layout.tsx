@@ -1,21 +1,19 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { VT323, Press_Start_2P } from 'next/font/google';
+import { Inter, Roboto_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
-const fontHeading = Press_Start_2P({
+const fontHeading = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-heading',
-  weight: '400',
 });
 
-const fontBody = VT323({
+const fontBody = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
-  weight: '400',
 });
 
 export const metadata: Metadata = {

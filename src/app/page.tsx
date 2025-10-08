@@ -67,7 +67,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                   alt="Retrato de Manuel Marcano"
                   width={aboutImage.width}
                   height={aboutImage.height}
-                  className="rounded-lg border-2 border-black"
+                  className="rounded-full border-2 border-primary"
                   data-ai-hint={aboutImage['data-ai-hint']}
                 />
               </div>
@@ -82,7 +82,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
         <div className="space-y-6 text-lg">
           {portfolioData.education.map((edu, index) => (
             <div key={index}>
-              <p className="font-bold text-red-600">
+              <p className="font-bold text-primary">
                 {edu.period}
               </p>
               <h4 className="font-bold">{edu.title}</h4>
@@ -117,22 +117,22 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
             <div className='space-y-6'>
             {portfolioData.technicalSkills.map((skill, index) => (
               <div key={index}>
-                  <p className='font-bold text-red-600 mb-3'>{skill.category}</p>
+                  <p className='font-bold text-primary mb-3'>{skill.category}</p>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item, i) => (
-                      <Badge key={i} variant="secondary" className="text-lg bg-gray-300 text-black border-black border-2">{item}</Badge>
+                      <Badge key={i} variant="secondary" className="text-base">{item}</Badge>
                     ))}
                   </div>
               </div>
             ))}
             </div>
           </div>
-          <Separator className="my-8 bg-gray-400"/>
+          <Separator className="my-8"/>
           <div>
             <h4 className="font-bold text-xl mb-4">Habilidades Personales</h4>
             <div className="flex flex-wrap gap-2">
               {portfolioData.softSkills.map((item, i) => (
-                <Badge key={i} variant="secondary" className="text-lg bg-gray-300 text-black border-black border-2">{item}</Badge>
+                <Badge key={i} variant="secondary" className="text-base">{item}</Badge>
               ))}
             </div>
           </div>
@@ -142,10 +142,10 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       return (
          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-lg">
            {portfolioData.languages.map((lang, index) => (
-             <Card key={index} className="bg-gray-200 border-2 border-black">
+             <Card key={index} className="bg-secondary/50">
                <CardHeader>
                  <CardTitle className='text-xl'>{lang.name}</CardTitle>
-                 <CardDescription className='font-bold text-2xl text-red-600'>{lang.level}</CardDescription>
+                 <CardDescription className='font-bold text-2xl text-primary'>{lang.level}</CardDescription>
                </CardHeader>
              </Card>
            ))}
@@ -154,11 +154,11 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
     case 'contact':
         return (
             <div className="space-y-6 text-xl">
-                <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-4 group transition-colors hover:text-red-600">
+                <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
                     <Mail className="w-8 h-8" />
                     <span className="group-hover:underline">{portfolioData.contact.email}</span>
                 </a>
-                <a href={`tel:${portfolioData.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors hover:text-red-600">
+                <a href={`tel:${portfolioData.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
                     <Phone className="w-8 h-8" />
                     <span className="group-hover:underline">{portfolioData.contact.phone}</span>
                 </a>
@@ -181,12 +181,12 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-full relative flex flex-col items-center justify-center p-4 font-body text-black">
+    <main className="min-h-screen w-full relative flex flex-col items-center justify-center p-4 font-body text-foreground">
       <div className="text-center z-10 mb-12">
-        <h1 className="text-5xl md:text-7xl font-heading text-black">
-          <span className="text-red-600">The</span> {portfolioData.name}
+        <h1 className="text-5xl md:text-7xl font-heading">
+          {portfolioData.name}
         </h1>
-        <p className="text-3xl md:text-4xl text-red-600 mt-2 font-heading">
+        <p className="text-3xl md:text-4xl text-primary mt-2 font-heading">
           {`"${portfolioData.title}"`}
         </p>
       </div>
@@ -199,10 +199,10 @@ export default function Home() {
             className="group relative cursor-pointer flex flex-col items-center justify-center text-center float"
             style={{ animationDelay: `${index * 150}ms` }}
           >
-            <div className="absolute w-40 h-40 rounded-full bg-gray-200 border-4 border-black transition-all duration-300 group-hover:bg-red-200 group-hover:border-red-600" />
+            <div className="absolute w-40 h-40 rounded-full bg-background border-2 border-foreground/10 shadow-lg transition-all duration-300 group-hover:bg-accent/50 group-hover:border-accent" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <section.icon className="w-12 h-12 text-red-600 mb-2 transition-transform duration-300 group-hover:scale-110" style={{marginTop: '-1rem'}} />
-              <h3 className="font-heading font-bold text-lg text-black">{section.label}</h3>
+              <section.icon className="w-12 h-12 text-primary mb-2 transition-transform duration-300 group-hover:scale-110" style={{marginTop: '-1rem'}} />
+              <h3 className="font-heading font-bold text-lg">{section.label}</h3>
             </div>
           </div>
         ))}
@@ -213,18 +213,18 @@ export default function Home() {
             aria-label="Descargar CV"
             style={{ animationDelay: `${sections.length * 150}ms` }}
           >
-             <div className="absolute w-40 h-40 rounded-full bg-gray-200 border-4 border-black transition-all duration-300 group-hover:bg-red-200 group-hover:border-red-600" />
+             <div className="absolute w-40 h-40 rounded-full bg-background border-2 border-foreground/10 shadow-lg transition-all duration-300 group-hover:bg-accent/50 group-hover:border-accent" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <DownloadIcon className="w-12 h-12 text-red-600 mb-2 transition-transform duration-300 group-hover:scale-110" style={{marginTop: '-1rem'}}/>
-              <h3 className="font-heading font-bold text-lg text-black">Descargar CV</h3>
+              <DownloadIcon className="w-12 h-12 text-primary mb-2 transition-transform duration-300 group-hover:scale-110" style={{marginTop: '-1rem'}}/>
+              <h3 className="font-heading font-bold text-lg">Descargar CV</h3>
             </div>
           </a>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="font-body text-black">
+        <DialogContent className="font-body">
           <DialogHeader>
-              <DialogTitle>{getSectionTitle(activeSection)}</DialogTitle>
+            <DialogTitle>{getSectionTitle(activeSection)}</DialogTitle>
           </DialogHeader>
           <div className="p-1 -mx-1">
             <div className="p-6">
