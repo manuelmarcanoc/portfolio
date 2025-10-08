@@ -10,11 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['PT Sans', 'sans-serif'],
-        headline: ['Lobster', 'cursive'],
-        'headline-script': ['Passion One', 'sans-serif'],
-        display: ['Anton', 'sans-serif'],
-        code: ['monospace'],
+        heading: ['var(--font-heading)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -57,31 +54,11 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
-        window: {
-          DEFAULT: 'hsl(var(--window-bg))',
-          border: 'hsl(var(--window-border-color))',
-          'title-bar': 'hsl(var(--window-title-bar-bg))',
-          'title-bar-text': 'hsl(var(--window-title-bar-text))',
-          'close-button': 'hsl(var(--window-close-button-bg))',
-        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
-      },
-      boxShadow: {
-        'window-shadow': '5px 5px 0px 0px hsl(var(--window-border-color))',
       },
       keyframes: {
         'accordion-down': {
@@ -105,20 +82,9 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
-      textShadow: {
-        'outline-black': '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-      }
     },
   },
   plugins: [
     require('tailwindcss-animate'),
-    function ({ addUtilities, theme }: { addUtilities: any, theme: any }) {
-      const newUtilities = {
-        '.text-outline': {
-          textShadow: theme('textShadow.outline-black'),
-        },
-      }
-      addUtilities(newUtilities, ['responsive', 'hover'])
-    }
   ],
 } satisfies Config;

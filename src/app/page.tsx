@@ -29,6 +29,7 @@ import { Separator } from '@/components/ui/separator';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 type SectionId =
   | 'about'
@@ -42,51 +43,14 @@ const sections: {
   id: SectionId;
   label: string;
   icon: React.ElementType;
-  style: React.CSSProperties;
-  className: string;
+  description: string;
 }[] = [
-  {
-    id: 'about',
-    label: 'Sobre Mí',
-    icon: AboutIcon,
-    style: { top: '15%', left: '15%' },
-    className: 'w-32 h-32 md:w-40 md:h-40',
-  },
-  {
-    id: 'education',
-    label: 'Educación',
-    icon: GraduationCapIcon,
-    style: { top: '15%', right: '15%' },
-    className: 'w-28 h-28 md:w-36 md:h-36',
-  },
-  {
-    id: 'experience',
-    label: 'Experiencia',
-    icon: BriefcaseIcon,
-    style: { top: '45%', right: '5%' },
-    className: 'w-32 h-32 md:w-40 md:h-40',
-  },
-  {
-    id: 'skills',
-    label: 'Habilidades',
-    icon: CodeIcon,
-    style: { top: '50%', left: '2%' },
-    className: 'w-36 h-36 md:w-44 md:h-44',
-  },
-  {
-    id: 'languages',
-    label: 'Idiomas',
-    icon: LanguagesIcon,
-    style: { bottom: '5%', left: '20%' },
-    className: 'w-24 h-24 md:w-32 md:h-32',
-  },
-  {
-    id: 'contact',
-    label: 'Contacto',
-    icon: MailIcon,
-    style: { bottom: '8%', right: '25%' },
-    className: 'w-28 h-28 md:w-36 md:h-36',
-  },
+  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, description: 'Conóceme un poco mejor' },
+  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, description: 'Mi trayectoria profesional' },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, description: 'Mi formación académica' },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, description: 'Tecnologías que manejo' },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, description: 'Lenguajes que hablo' },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, description: 'Hablemos' },
 ];
 
 const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) => {
@@ -96,7 +60,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
     case 'about':
       const aboutImage = placeholderImages.find(p => p.id === 'about-me');
       return (
-        <div className="flex flex-col sm:flex-row gap-6 items-center">
+        <div className="flex flex-col sm:flex-row gap-8 items-center">
             {aboutImage && (
               <div className="flex-shrink-0">
                 <Image
@@ -124,10 +88,10 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 <div className="flex-grow w-px bg-border" />
               </div>
               <div>
-                <p className="font-semibold text-accent font-display">
+                <p className="font-semibold text-primary/80 font-mono text-sm">
                   {edu.period}
                 </p>
-                <h4 className="font-bold text-lg">{edu.title}</h4>
+                <h4 className="font-bold text-lg text-foreground">{edu.title}</h4>
                 <p className="text-muted-foreground">{edu.institution}</p>
               </div>
             </div>
@@ -136,7 +100,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       );
     case 'experience':
       return (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {portfolioData.experience.map((exp, index) => (
             <div key={index} className="flex gap-4">
                <div className="flex flex-col items-center">
@@ -144,10 +108,10 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 <div className="flex-grow w-px bg-border" />
               </div>
               <div className='flex-1'>
-                <h4 className="font-bold text-lg font-display">{exp.role}</h4>
-                <p className="text-muted-foreground mb-2">{exp.description}</p>
+                <h4 className="font-bold text-xl text-foreground">{exp.role}</h4>
+                <p className="text-muted-foreground mb-3">{exp.description}</p>
                 {exp.details && (
-                  <ul className="list-disc list-inside space-y-1 text-foreground/80">
+                  <ul className="list-disc list-inside space-y-2 text-foreground/80">
                     {exp.details.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
@@ -162,26 +126,26 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       return (
         <div className="space-y-8">
           <div>
-            <h4 className="font-bold text-lg font-display mb-3">Habilidades Técnicas</h4>
-            <div className='space-y-4'>
+            <h4 className="font-bold text-xl mb-4 text-foreground">Habilidades Técnicas</h4>
+            <div className='space-y-6'>
             {portfolioData.technicalSkills.map((skill, index) => (
               <div key={index}>
-                  <p className='font-semibold text-accent mb-2'>{skill.category}</p>
+                  <p className='font-semibold text-primary mb-3'>{skill.category}</p>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item, i) => (
-                      <Badge key={i} variant="secondary" className="text-sm">{item}</Badge>
+                      <Badge key={i} variant="secondary" className="text-sm font-medium">{item}</Badge>
                     ))}
                   </div>
               </div>
             ))}
             </div>
           </div>
-          <Separator />
+          <Separator className="my-8"/>
           <div>
-            <h4 className="font-bold text-lg font-display mb-3">Habilidades Personales</h4>
+            <h4 className="font-bold text-xl mb-4 text-foreground">Habilidades Personales</h4>
             <div className="flex flex-wrap gap-2">
               {portfolioData.softSkills.map((item, i) => (
-                <Badge key={i} variant="secondary" className="text-sm">{item}</Badge>
+                <Badge key={i} variant="secondary" className="text-sm font-medium">{item}</Badge>
               ))}
             </div>
           </div>
@@ -189,11 +153,11 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       );
     case 'languages':
       return (
-         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
            {portfolioData.languages.map((lang, index) => (
-             <Card key={index} className="bg-secondary/50 border-2 border-primary">
+             <Card key={index} className="bg-secondary/50 border-border hover:border-primary transition-colors">
                <CardHeader>
-                 <CardTitle className="font-display">{lang.name}</CardTitle>
+                 <CardTitle className="text-foreground">{lang.name}</CardTitle>
                  <CardDescription className='text-primary font-bold text-lg'>{lang.level}</CardDescription>
                </CardHeader>
              </Card>
@@ -202,17 +166,17 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       );
     case 'contact':
         return (
-            <div className="space-y-4 text-lg">
-                <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-4 group">
-                    <Mail className="w-6 h-6 text-primary" />
+            <div className="space-y-6 text-lg">
+                <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
+                    <Mail className="w-6 h-6 text-primary/80 group-hover:text-primary transition-colors" />
                     <span className="group-hover:underline">{portfolioData.contact.email}</span>
                 </a>
-                <a href={`tel:${portfolioData.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group">
-                    <Phone className="w-6 h-6 text-primary" />
+                <a href={`tel:${portfolioData.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
+                    <Phone className="w-6 h-6 text-primary/80 group-hover:text-primary transition-colors" />
                     <span className="group-hover:underline">{portfolioData.contact.phone}</span>
                 </a>
                 <div className="flex items-center gap-4">
-                    <MapPin className="w-6 h-6 text-primary" />
+                    <MapPin className="w-6 h-6 text-primary/80" />
                     <span>{portfolioData.contact.location}</span>
                 </div>
             </div>
@@ -230,63 +194,63 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-full relative overflow-hidden flex flex-col items-center justify-center p-4 bg-background text-outline">
-      <div className="text-center z-10 mb-8 md:mb-16">
-        <h1 className="text-6xl md:text-8xl font-bold font-headline text-primary text-outline-black">
+    <main className="min-h-screen w-full relative flex flex-col items-center justify-center p-4 background-gradient font-body">
+      <div className="text-center z-10 mb-12">
+        <h1 className="text-6xl md:text-8xl font-bold font-heading text-foreground tracking-tighter">
           {portfolioData.name}
         </h1>
-        <p className="text-2xl md:text-4xl text-primary/90 mt-2 font-headline-script">
+        <p className="text-2xl md:text-3xl text-primary mt-2 font-medium">
           {portfolioData.title}
         </p>
       </div>
 
-      <div className="absolute top-0 left-0 w-full h-full z-0">
+      <div className="z-10 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl w-full">
         {sections.map((section) => (
-          <button
+          <div
             key={section.id}
             onClick={() => setActiveSection(section.id)}
-            className={`absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 animate-float ${section.className}`}
-            style={section.style}
-            aria-label={`Abrir sección ${section.label}`}
+            className="group relative cursor-pointer rounded-lg border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-primary/50 overflow-hidden"
           >
-            <section.icon className="w-1/3 h-1/3" />
-            <span className="font-display text-sm md:text-base font-bold mt-1 uppercase">
-              {section.label}
-            </span>
-          </button>
+            <div className="absolute top-0 left-0 w-full h-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+                 style={{
+                    background: 'radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.1), transparent 70%)'
+                 }}
+            />
+            <div className="relative z-10">
+              <section.icon className="w-10 h-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="font-heading font-bold text-xl text-foreground mb-1">{section.label}</h3>
+              <p className="text-muted-foreground text-sm">{section.description}</p>
+            </div>
+          </div>
         ))}
          <a
             href={portfolioData.cvUrl}
             download
-            className="absolute flex flex-col items-center justify-center text-center p-2 rounded-full bg-primary/20 backdrop-blur-sm border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary/80 hover:text-primary-foreground hover:scale-110 hover:shadow-2xl hover:shadow-primary/30 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50 w-28 h-28 md:w-32 md:h-32 animate-float"
-            style={{ top: '65%', left: '40%' }}
+            className="group relative cursor-pointer rounded-lg border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-primary/50 overflow-hidden col-span-2 md:col-span-1"
             aria-label="Descargar CV"
           >
-            <DownloadIcon className="w-1/3 h-1/3" />
-            <span className="font-display text-sm md:text-base font-bold mt-1 uppercase">
-              Descargar CV
-            </span>
+            <div className="absolute top-0 left-0 w-full h-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+                 style={{
+                    background: 'radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.1), transparent 70%)'
+                 }}
+            />
+            <div className="relative z-10">
+              <DownloadIcon className="w-10 h-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="font-heading font-bold text-xl text-foreground mb-1">Descargar CV</h3>
+              <p className="text-muted-foreground text-sm">Obtén mi currículum completo</p>
+            </div>
           </a>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="p-0 max-w-md md:max-w-2xl max-h-[80vh] bg-window-bg border-4 border-window-border shadow-window-shadow rounded-none">
-            <DialogHeader className="h-8 bg-window-title-bar flex flex-row items-center justify-between px-2 border-b-4 border-window-border cursor-move">
-                <div className='flex items-center gap-2'>
-                    <button
-                        onClick={() => setActiveSection(null)}
-                        className="w-5 h-5 bg-window-close-button border-2 border-window-border flex items-center justify-center text-black font-mono font-black text-xs"
-                        aria-label="Cerrar"
-                    >
-                        X
-                    </button>
-                    <DialogTitle className="font-display text-window-title-bar-text text-lg">
-                        {getSectionTitle(activeSection)}
-                    </DialogTitle>
-                </div>
+        <DialogContent className="max-w-md md:max-w-2xl max-h-[80vh] bg-background/80 backdrop-blur-md border-border">
+            <DialogHeader>
+                <DialogTitle className="font-heading text-2xl text-foreground">
+                    {getSectionTitle(activeSection)}
+                </DialogTitle>
             </DialogHeader>
-            <div className="p-6 overflow-y-auto">
-              <div className="font-sans text-foreground/90">
+            <div className="p-1 -mx-1 overflow-y-auto">
+              <div className="p-6 font-body text-foreground/90">
                 <SectionContent section={activeSection} />
               </div>
             </div>
@@ -295,4 +259,3 @@ export default function Home() {
     </main>
   );
 }
- 
