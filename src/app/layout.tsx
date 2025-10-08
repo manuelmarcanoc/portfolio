@@ -1,19 +1,21 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Inter, Manrope } from 'next/font/google';
+import { VT323, Press_Start_2P } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
-const fontHeading = Manrope({
+const fontHeading = Press_Start_2P({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-heading',
+  weight: '400',
 });
 
-const fontBody = Inter({
+const fontBody = VT323({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -27,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark">
+    <html lang="es">
       <body
         className={cn(
           'antialiased',
