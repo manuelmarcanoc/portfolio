@@ -4,57 +4,35 @@
 
 @layer base {
   :root {
-    --background: 48 33% 94%;
-    --foreground: 240 10% 3.9%;
+    --background: 222 83% 98%;
+    --foreground: 222 47% 11%;
 
-    --card: 48 33% 94%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 222 83% 98%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 48 33% 94%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: 222 83% 98%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 221 44% 40%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 340 82% 52%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 240 10% 3.9%;
+    --secondary-foreground: 222 47% 11%;
 
     --muted: 210 40% 96.1%;
-    --muted-foreground: 240 5.9% 10%;
+    --muted-foreground: 224 71% 4%;
 
-    --accent: 160 50% 75%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 340 82% 52%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 44% 40%;
+    --ring: 340 82% 52%;
 
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 210 40% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 212.7 26.8% 83.9%;
+    --radius: 0rem;
   }
 }
 
@@ -64,6 +42,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: url('https://i.imgur.com/k27y1qG.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 }
 
@@ -73,7 +55,7 @@
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-20px);
     }
     100% {
       transform: translateY(0px);
