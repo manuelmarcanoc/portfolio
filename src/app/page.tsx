@@ -58,14 +58,14 @@ const sections: Section[] = [
   { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', left: '5%' } },
   { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '20%' } },
   { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '75%', left: '30%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '25%', left: '30%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '60%', right: '20%' }
+    position: { top: '70%', right: '25%' }
   },
   {
     id: 'cv',
@@ -73,7 +73,7 @@ const sections: Section[] = [
     icon: DownloadIcon,
     isLink: true,
     url: portfolioData.cvUrl,
-    position: { bottom: '25%', right: '45%' }
+    position: { bottom: '30%', right: '45%' }
   },
 ];
 
@@ -261,7 +261,7 @@ export default function Home() {
       
       <div className="relative w-full h-screen max-w-7xl mx-auto flex items-center justify-center">
         <div className="text-center z-10 pointer-events-none">
-          <h1 className="text-6xl md:text-7xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
+          <h1 className="text-5xl md:text-6xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
             {portfolioData.name}
           </h1>
           <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
@@ -281,7 +281,7 @@ export default function Home() {
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
         <DialogContent>
           <DialogHeader>
-             <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
+            <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
           </DialogHeader>
           <div className="p-1 -mx-1">
             <div className="p-6 max-h-[70vh] overflow-y-auto">
