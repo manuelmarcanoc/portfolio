@@ -53,19 +53,19 @@ type Section = {
 };
 
 const sections: Section[] = [
-  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '10%', left: '15%' } },
-  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '30%', right: '5%' } },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { top: '65%', left: '10%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', right: '25%' } },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '20%', left: '30%' } },
+  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '5%', left: '10%' } },
+  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '5%' } },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '10%', left: '5%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '55%', left: '20%' } },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '10%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '35%', left: '35%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '55%', right: '28%' }
+    position: { top: '60%', right: '20%' }
   },
   {
     id: 'cv',
@@ -73,7 +73,7 @@ const sections: Section[] = [
     icon: DownloadIcon,
     isLink: true,
     url: portfolioData.cvUrl,
-    position: { bottom: '10%', right: '45%' }
+    position: { bottom: '20%', right: '40%' }
   },
 ];
 
@@ -253,8 +253,8 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full relative flex items-center justify-center p-4 font-body text-foreground overflow-hidden">
       
-      <div className="relative w-full h-full flex items-center justify-center">
-        <div className="text-center z-10">
+      <div className="relative w-full h-screen max-w-7xl mx-auto flex items-center justify-center">
+        <div className="text-center z-10 pointer-events-none">
           <h1 className="text-6xl md:text-7xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
             {portfolioData.name}
           </h1>
