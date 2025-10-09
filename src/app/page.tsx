@@ -56,16 +56,16 @@ const sections: Section[] = [
   { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '5%', left: '10%' } },
   { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '5%' } },
   { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', left: '5%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '25%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '20%' } },
   { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '45%', left: '40%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '75%', left: '30%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '55%', right: '25%' }
+    position: { top: '60%', right: '20%' }
   },
   {
     id: 'cv',
@@ -73,7 +73,7 @@ const sections: Section[] = [
     icon: DownloadIcon,
     isLink: true,
     url: portfolioData.cvUrl,
-    position: { bottom: '20%', right: '40%' }
+    position: { bottom: '25%', right: '45%' }
   },
 ];
 
@@ -204,7 +204,7 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
   const [animationDelay, setAnimationDelay] = useState('0ms');
 
   useEffect(() => {
-    // Generate random delay only on the client-side
+    // Generate random delay only on the client-side to avoid hydration errors
     setAnimationDelay(`${Math.random() * 1000}ms`);
   }, []);
 
@@ -279,7 +279,7 @@ export default function Home() {
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent>
           <DialogHeader>
              <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
           </DialogHeader>
@@ -288,10 +288,10 @@ export default function Home() {
               <SectionContent section={activeSection} />
             </div>
           </div>
-          <DialogClose>
-              <div className="absolute top-0 right-0 m-2 p-1 bg-[#c0c0c0] border-2 border-t-[#ffffff] border-l-[#ffffff] border-r-[#808080] border-b-[#808080] active:border-t-[#808080] active:border-l-[#808080] active:border-r-[#ffffff] active:border-b-[#ffffff]">
+          <DialogClose asChild>
+            <button className="absolute top-0 right-0 m-2 p-1 bg-[#c0c0c0] border-2 border-t-[#ffffff] border-l-[#ffffff] border-r-[#808080] border-b-[#808080] active:border-t-[#808080] active:border-l-[#808080] active:border-r-[#ffffff] active:border-b-[#ffffff]">
                 <X className="w-4 h-4" color='black' strokeWidth={1}/>
-              </div>
+            </button>
           </DialogClose>
         </DialogContent>
       </Dialog>
