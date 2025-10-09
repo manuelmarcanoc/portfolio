@@ -55,17 +55,17 @@ type Section = {
 const sections: Section[] = [
   { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '5%', left: '10%' } },
   { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '5%' } },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '10%', left: '5%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '55%', left: '20%' } },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '10%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '35%', left: '35%' } },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', left: '5%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '25%' } },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '45%', left: '40%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '60%', right: '20%' }
+    position: { top: '55%', right: '25%' }
   },
   {
     id: 'cv',
