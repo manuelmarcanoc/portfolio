@@ -24,6 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { Mail, MapPin, Phone } from 'lucide-react';
@@ -59,7 +60,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
     case 'about':
       const aboutImage = placeholderImages.find(p => p.id === 'about-me');
       return (
-        <div className="flex flex-col sm:flex-row gap-8 items-center text-xl">
+        <div className="flex flex-col sm:flex-row gap-8 items-center">
             {aboutImage && (
               <div className="flex-shrink-0">
                 <Image
@@ -72,34 +73,34 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 />
               </div>
             )}
-            <p className="leading-relaxed">
+            <p className="leading-relaxed text-foreground/80">
               {portfolioData.about}
             </p>
         </div>
       );
     case 'education':
       return (
-        <div className="space-y-6 text-xl">
+        <div className="space-y-6">
           {portfolioData.education.map((edu, index) => (
             <div key={index}>
               <p className="font-bold text-primary">
                 {edu.period}
               </p>
               <h4 className="font-heading text-2xl">{edu.title}</h4>
-              <p>{edu.institution}</p>
+              <p className="text-foreground/80">{edu.institution}</p>
             </div>
           ))}
         </div>
       );
     case 'experience':
       return (
-        <div className="space-y-8 text-xl">
+        <div className="space-y-8">
           {portfolioData.experience.map((exp, index) => (
             <div key={index}>
               <h4 className="font-heading text-2xl">{exp.role}</h4>
-              <p className="mb-3">{exp.description}</p>
+              <p className="mb-3 text-foreground/80">{exp.description}</p>
               {exp.details && (
-                <ul className="list-disc list-inside space-y-2">
+                <ul className="list-disc list-inside space-y-2 text-foreground/80">
                   {exp.details.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -111,7 +112,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       );
     case 'skills':
       return (
-        <div className="space-y-8 text-xl">
+        <div className="space-y-8">
           <div>
             <h4 className="font-heading text-2xl mb-4">Habilidades Técnicas</h4>
             <div className='space-y-6'>
@@ -120,19 +121,19 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                   <p className='font-bold text-primary mb-3'>{skill.category}</p>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item, i) => (
-                      <Badge key={i} variant="secondary" className="text-lg">{item}</Badge>
+                      <Badge key={i} variant="secondary">{item}</Badge>
                     ))}
                   </div>
               </div>
             ))}
             </div>
           </div>
-          <Separator className="my-8 bg-black/20"/>
+          <Separator className="my-8 bg-border"/>
           <div>
             <h4 className="font-heading text-2xl mb-4">Habilidades Personales</h4>
             <div className="flex flex-wrap gap-2">
               {portfolioData.softSkills.map((item, i) => (
-                <Badge key={i} variant="secondary" className="text-lg">{item}</Badge>
+                <Badge key={i} variant="secondary">{item}</Badge>
               ))}
             </div>
           </div>
@@ -142,7 +143,7 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       return (
          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
            {portfolioData.languages.map((lang, index) => (
-             <Card key={index} className="bg-white/80 border-black">
+             <Card key={index} className="bg-secondary border-border">
                <CardHeader>
                  <CardTitle className='font-heading text-2xl'>{lang.name}</CardTitle>
                  <CardDescription className='font-bold text-4xl text-primary'>{lang.level}</CardDescription>
@@ -153,17 +154,17 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
       );
     case 'contact':
         return (
-            <div className="space-y-6 text-2xl">
+            <div className="space-y-6 text-lg">
                 <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
-                    <Mail className="w-8 h-8" />
+                    <Mail className="w-6 h-6" />
                     <span className="group-hover:underline">{portfolioData.contact.email}</span>
                 </a>
                 <a href={`tel:${portfolioData.contact.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors hover:text-primary">
-                    <Phone className="w-8 h-8" />
+                    <Phone className="w-6 h-6" />
                     <span className="group-hover:underline">{portfolioData.contact.phone}</span>
                 </a>
                 <div className="flex items-center gap-4">
-                    <MapPin className="w-8 h-8" />
+                    <MapPin className="w-6 h-6" />
                     <span>{portfolioData.contact.location}</span>
                 </div>
             </div>
@@ -183,11 +184,11 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full relative flex flex-col items-center justify-center p-4 font-body text-foreground overflow-hidden">
       <div className="text-center z-10 mb-12">
-        <h1 className="text-8xl md:text-9xl font-heading text-white" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)'}}>
+        <h1 className="text-7xl md:text-8xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
           {portfolioData.name}
         </h1>
-        <p className="text-5xl md:text-6xl text-primary mt-2 font-body">
-          {`"${portfolioData.title}"`}
+        <p className="text-4xl md:text-5xl text-foreground mt-2 font-heading tracking-wider">
+          {portfolioData.title}
         </p>
       </div>
 
@@ -199,10 +200,10 @@ export default function Home() {
             className="group relative cursor-pointer flex flex-col items-center justify-center text-center float"
             style={{ animationDelay: `${index * 250}ms` }}
           >
-            <div className="absolute w-40 h-40 rounded-full bg-white/80 border-2 border-black shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-white" />
+            <div className="absolute w-40 h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <section.icon className="w-16 h-16 text-black mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-white" style={{ marginTop: '-1.5rem'}} />
-              <h3 className="font-body text-2xl text-black group-hover:text-white">{section.label}</h3>
+              <section.icon className="w-12 h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
+              <h3 className="font-heading text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
             </div>
           </div>
         ))}
@@ -213,18 +214,19 @@ export default function Home() {
             aria-label="Descargar CV"
             style={{ animationDelay: `${sections.length * 250}ms` }}
           >
-             <div className="absolute w-40 h-40 rounded-full bg-white/80 border-2 border-black shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-white" />
+             <div className="absolute w-40 h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <DownloadIcon className="w-16 h-16 text-black mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-white" style={{marginTop: '-1.5rem'}}/>
-              <h3 className="font-body text-2xl text-black group-hover:text-white">Descargar CV</h3>
+              <DownloadIcon className="w-12 h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground"/>
+              <h3 className="font-heading text-2xl text-foreground/90 group-hover:text-primary-foreground">Descargar CV</h3>
             </div>
           </a>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
-        <DialogContent>
+        <DialogContent className="max-w-3xl">
           <DialogHeader>
-             <DialogTitle>{getSectionTitle(activeSection)}</DialogTitle>
+             <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
+             <DialogClose />
           </DialogHeader>
           <div className="p-1 -mx-1">
             <div className="p-6">

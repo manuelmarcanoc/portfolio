@@ -1,22 +1,29 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { DM_Serif_Display, VT323 } from 'next/font/google';
+import { Bebas_Neue, Lobster, Montserrat } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
-const fontHeading = DM_Serif_Display({
+const fontHeading = Bebas_Neue({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-heading',
   weight: '400',
 });
 
-const fontBody = VT323({
+const fontBody = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-body',
+});
+
+const fontScript = Lobster({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-script',
   weight: '400',
 });
+
 
 export const metadata: Metadata = {
   title: 'Manuel Marcano Portfolio',
@@ -34,7 +41,8 @@ export default function RootLayout({
         className={cn(
           'antialiased',
           fontHeading.variable,
-          fontBody.variable
+          fontBody.variable,
+          fontScript.variable
         )}
       >
         {children}
