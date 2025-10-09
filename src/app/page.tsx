@@ -28,9 +28,9 @@ import {
   DialogClose
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, X } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 type SectionId =
@@ -201,7 +201,13 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
 
 const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ section, onClick }) => {
   const commonClasses = "group absolute cursor-pointer flex flex-col items-center justify-center text-center float";
-  const animationDelay = `${Math.random() * 1000}ms`;
+  const [animationDelay, setAnimationDelay] = useState('0ms');
+
+  useEffect(() => {
+    // Generate random delay only on the client-side
+    setAnimationDelay(`${Math.random() * 1000}ms`);
+  }, []);
+
 
   const content = (
       <>
@@ -276,13 +282,17 @@ export default function Home() {
         <DialogContent className="max-w-3xl">
           <DialogHeader>
              <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
-             <DialogClose />
           </DialogHeader>
           <div className="p-1 -mx-1">
             <div className="p-6 max-h-[70vh] overflow-y-auto">
               <SectionContent section={activeSection} />
             </div>
           </div>
+          <DialogClose>
+              <div className="absolute top-0 right-0 m-2 p-1 bg-[#c0c0c0] border-2 border-t-[#ffffff] border-l-[#ffffff] border-r-[#808080] border-b-[#808080] active:border-t-[#808080] active:border-l-[#808080] active:border-r-[#ffffff] active:border-b-[#ffffff]">
+                <X className="w-4 h-4" color='black' strokeWidth={1}/>
+              </div>
+          </DialogClose>
         </DialogContent>
       </Dialog>
     </main>
