@@ -53,19 +53,19 @@ type Section = {
 };
 
 const sections: Section[] = [
-  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '5%', left: '10%' } },
-  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '5%' } },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', left: '5%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '20%' } },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '25%', left: '30%' } },
+  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '10%', left: '10%' } },
+  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '10%', right: '10%' } },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '10%', left: '10%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '42%', left: '5%' } },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '10%', right: '10%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '42%', right: '5%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '70%', right: '25%' }
+    position: { top: '5%', left: '42%' }
   },
   {
     id: 'cv',
@@ -73,7 +73,7 @@ const sections: Section[] = [
     icon: DownloadIcon,
     isLink: true,
     url: portfolioData.cvUrl,
-    position: { bottom: '30%', right: '45%' }
+    position: { bottom: '5%', left: '42%' }
   },
 ];
 
@@ -204,7 +204,6 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
   const [animationDelay, setAnimationDelay] = useState('0ms');
 
   useEffect(() => {
-    // Generate random delay only on the client-side to avoid hydration errors
     setAnimationDelay(`${Math.random() * 1000}ms`);
   }, []);
 
