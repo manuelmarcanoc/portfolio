@@ -49,23 +49,23 @@ type Section = {
   icon: React.ElementType;
   isLink?: boolean;
   url?: string;
-  position: { top?: string, left?: string, right?: string, bottom?: string };
+  position: { top?: string, left?: string, right?: string, bottom?: string, transform?: string };
 };
 
 const sections: Section[] = [
-  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '10%', left: '10%' } },
-  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '10%', right: '10%' } },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '10%', left: '10%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '42%', left: '5%' } },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '10%', right: '10%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '42%', right: '5%' } },
+  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '50%', left: '5%' } },
+  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '25%', left: '25%' } },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { top: '75%', left: '25%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', left: '50%', transform: 'translateX(-50%)' } },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '25%', right: '25%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '75%', right: '25%' } },
   {
     id: 'github',
     label: 'GitHub',
     icon: GithubIcon,
     isLink: true,
     url: portfolioData.githubUrl,
-    position: { top: '5%', left: '42%' }
+    position: { top: '50%', right: '5%' }
   },
   {
     id: 'cv',
@@ -73,7 +73,7 @@ const sections: Section[] = [
     icon: DownloadIcon,
     isLink: true,
     url: portfolioData.cvUrl,
-    position: { bottom: '5%', left: '42%' }
+    position: { bottom: '5%', left: '50%', transform: 'translateX(-50%)' }
   },
 ];
 
@@ -256,25 +256,30 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-full relative flex items-center justify-center p-4 font-body text-foreground overflow-hidden">
-      
-      <div className="relative w-full h-screen max-w-7xl mx-auto flex items-center justify-center">
-        <div className="text-center z-10 pointer-events-none">
-          <h1 className="text-5xl md:text-6xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
-            {portfolioData.name}
-          </h1>
-          <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
-            {portfolioData.title}
-          </p>
-        </div>
+    <main className="min-h-screen relative overflow-hidden font-body text-foreground">
+      {/* Capa oscura para contraste */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-        {sections.map((section) => (
-          <SectionItem 
-            key={section.id} 
-            section={section} 
-            onClick={() => !section.isLink && setActiveSection(section.id)}
-          />
-        ))}
+      {/* Contenido del portfolio */}
+      <div className="relative z-10 flex items-center justify-center p-4 w-full h-screen">
+        <div className="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center">
+          <div className="text-center z-10 pointer-events-none">
+            <h1 className="text-5xl md:text-6xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
+              {portfolioData.name}
+            </h1>
+            <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
+              {portfolioData.title}
+            </p>
+          </div>
+
+          {sections.map((section) => (
+            <SectionItem 
+              key={section.id} 
+              section={section} 
+              onClick={() => !section.isLink && setActiveSection(section.id)}
+            />
+          ))}
+        </div>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
