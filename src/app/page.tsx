@@ -10,6 +10,7 @@ import {
   GraduationCapIcon,
   LanguagesIcon,
   MailIcon,
+  GithubIcon,
 } from '@/components/portfolio-icons';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -38,20 +39,44 @@ type SectionId =
   | 'experience'
   | 'skills'
   | 'languages'
-  | 'contact';
+  | 'contact'
+  | 'github'
+  | 'cv';
 
-const sections: {
+type Section = {
   id: SectionId;
   label: string;
   icon: React.ElementType;
-}[] = [
-  { id: 'about', label: 'Sobre Mí', icon: AboutIcon },
-  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon },
-  { id: 'contact', label: 'Contacto', icon: MailIcon },
+  isLink?: boolean;
+  url?: string;
+  position: { top?: string, left?: string, right?: string, bottom?: string };
+};
+
+const sections: Section[] = [
+  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '10%', left: '15%' } },
+  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '30%', right: '5%' } },
+  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { top: '65%', left: '10%' } },
+  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', right: '25%' } },
+  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', right: '15%' } },
+  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '20%', left: '30%' } },
+  {
+    id: 'github',
+    label: 'GitHub',
+    icon: GithubIcon,
+    isLink: true,
+    url: portfolioData.githubUrl,
+    position: { top: '55%', right: '28%' }
+  },
+  {
+    id: 'cv',
+    label: 'Descargar CV',
+    icon: DownloadIcon,
+    isLink: true,
+    url: portfolioData.cvUrl,
+    position: { bottom: '10%', right: '45%' }
+  },
 ];
+
 
 const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) => {
   if (!section) return null;
@@ -169,8 +194,52 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
                 </div>
             </div>
         );
+    default:
+        return null;
   }
 };
+
+const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ section, onClick }) => {
+  const commonClasses = "group absolute cursor-pointer flex flex-col items-center justify-center text-center float";
+  const animationDelay = `${Math.random() * 1000}ms`;
+
+  const content = (
+      <>
+        <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
+          <section.icon className="w-10 h-10 md:w-12 md:h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
+          <h3 className="font-heading text-xl md:text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
+        </div>
+      </>
+  );
+
+  if (section.isLink) {
+    return (
+      <a
+        href={section.url}
+        target={section.id === 'github' ? '_blank' : undefined}
+        rel={section.id === 'github' ? 'noopener noreferrer' : undefined}
+        download={section.id === 'cv'}
+        className={commonClasses}
+        style={{ ...section.position, animationDelay }}
+        aria-label={section.label}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      onClick={onClick}
+      className={commonClasses}
+      style={{ ...section.position, animationDelay }}
+    >
+      {content}
+    </div>
+  );
+};
+
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
@@ -182,44 +251,25 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen w-full relative flex flex-col items-center justify-center p-4 font-body text-foreground overflow-hidden">
-      <div className="text-center z-10 mb-12">
-        <h1 className="text-7xl md:text-8xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
-          {portfolioData.name}
-        </h1>
-        <p className="text-4xl md:text-5xl text-foreground mt-2 font-heading tracking-wider">
-          {portfolioData.title}
-        </p>
-      </div>
+    <main className="min-h-screen w-full relative flex items-center justify-center p-4 font-body text-foreground overflow-hidden">
+      
+      <div className="relative w-full h-full flex items-center justify-center">
+        <div className="text-center z-10">
+          <h1 className="text-6xl md:text-7xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
+            {portfolioData.name}
+          </h1>
+          <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
+            {portfolioData.title}
+          </p>
+        </div>
 
-      <div className="z-10 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl w-full">
-        {sections.map((section, index) => (
-          <div
-            key={section.id}
-            onClick={() => setActiveSection(section.id)}
-            className="group relative cursor-pointer flex flex-col items-center justify-center text-center float"
-            style={{ animationDelay: `${index * 250}ms` }}
-          >
-            <div className="absolute w-40 h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <section.icon className="w-12 h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
-              <h3 className="font-heading text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
-            </div>
-          </div>
+        {sections.map((section) => (
+          <SectionItem 
+            key={section.id} 
+            section={section} 
+            onClick={() => !section.isLink && setActiveSection(section.id)}
+          />
         ))}
-         <a
-            href={portfolioData.cvUrl}
-            download
-            className="group relative cursor-pointer flex flex-col items-center justify-center text-center float col-span-2 md:col-span-1"
-            aria-label="Descargar CV"
-            style={{ animationDelay: `${sections.length * 250}ms` }}
-          >
-             <div className="absolute w-40 h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-              <DownloadIcon className="w-12 h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground"/>
-              <h3 className="font-heading text-2xl text-foreground/90 group-hover:text-primary-foreground">Descargar CV</h3>
-            </div>
-          </a>
       </div>
 
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
@@ -229,7 +279,7 @@ export default function Home() {
              <DialogClose />
           </DialogHeader>
           <div className="p-1 -mx-1">
-            <div className="p-6">
+            <div className="p-6 max-h-[70vh] overflow-y-auto">
               <SectionContent section={activeSection} />
             </div>
           </div>
