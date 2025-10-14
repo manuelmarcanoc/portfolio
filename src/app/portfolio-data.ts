@@ -95,5 +95,5 @@ export const portfolioData = {
     'Creatividad',
   ],
   cvUrl: '/Manuel_Marcano_CV.pdf',
-  githubUrl: 'https://github.com/tu-usuario-de-github',
+  githubUrl: 'https://github.com/manuelmarcanoc',
 };
