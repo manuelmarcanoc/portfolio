@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Bebas_Neue, Lobster, Montserrat } from 'next/font/google';
+import { Bebas_Neue, Playfair_Display, Montserrat } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
 const fontHeading = Bebas_Neue({
@@ -17,11 +17,10 @@ const fontBody = Montserrat({
   variable: '--font-body',
 });
 
-const fontScript = Lobster({
+const fontScript = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-script',
-  weight: '400',
 });
 
 

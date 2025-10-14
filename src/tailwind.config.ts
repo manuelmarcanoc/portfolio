@@ -19,7 +19,7 @@ export default {
       fontFamily: {
         heading: ['var(--font-heading)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
-        script: ['var(--font-script)', 'cursive'],
+        script: ['var(--font-script)', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
