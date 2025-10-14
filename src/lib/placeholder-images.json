@@ -2,12 +2,10 @@
   "placeholderImages": [
     {
       "id": "about-me",
-      "src": "https://picsum.photos/seed/aboutme/150/150",
+      "src": "/foto-perfil.png",
       "width": 150,
       "height": 150,
       "data-ai-hint": "portrait professional"
     }
   ]
 }
-
-    
