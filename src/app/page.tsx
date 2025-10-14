@@ -53,28 +53,14 @@ type Section = {
 };
 
 const sections: Section[] = [
-  { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '50%', left: '5%' } },
-  { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '25%', left: '25%' } },
-  { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { top: '75%', left: '25%' } },
-  { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', left: '50%', transform: 'translateX(-50%)' } },
-  { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '25%', right: '25%' } },
-  { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '75%', right: '25%' } },
-  {
-    id: 'github',
-    label: 'GitHub',
-    icon: GithubIcon,
-    isLink: true,
-    url: portfolioData.githubUrl,
-    position: { top: '50%', right: '5%' }
-  },
-  {
-    id: 'cv',
-    label: 'Descargar CV',
-    icon: DownloadIcon,
-    isLink: true,
-    url: portfolioData.cvUrl,
-    position: { bottom: '5%', left: '50%', transform: 'translateX(-50%)' }
-  },
+    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '25%', right: '15%' } },
+    { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '50%', right: '5%', transform: 'translateY(-50%)' } },
+    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { bottom: '25%', right: '15%' } },
+    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '25%', left: '15%' } },
+    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '50%', left: '5%', transform: 'translateY(-50%)' } },
+    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '25%', left: '15%' } },
 ];
 
 
