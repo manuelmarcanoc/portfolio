@@ -53,14 +53,14 @@ type Section = {
 };
 
 const sections: Section[] = [
-    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '5%', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '25%', right: '15%' } },
-    { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '50%', right: '5%', transform: 'translateY(-50%)' } },
-    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { bottom: '25%', right: '15%' } },
-    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { bottom: '5%', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '25%', left: '15%' } },
-    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { top: '50%', left: '5%', transform: 'translateY(-50%)' } },
-    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { top: '25%', left: '15%' } },
+    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translateY(-50%)' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%)' } },
+    { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '0%', left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%)' } },
+    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translateY(-50%)' } },
+    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%)' } },
+    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%)' } },
 ];
 
 
@@ -190,6 +190,7 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
   const [animationDelay, setAnimationDelay] = useState('0ms');
 
   useEffect(() => {
+    // This now only runs on the client, preventing the hydration error.
     setAnimationDelay(`${Math.random() * 1000}ms`);
   }, []);
 
@@ -243,10 +244,10 @@ export default function Home() {
   
   return (
     <main className="min-h-screen relative overflow-hidden font-body text-foreground">
-      {/* Capa oscura para contraste */}
+      {/* Dark overlay for contrast */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Contenido del portfolio */}
+      {/* Portfolio content */}
       <div className="relative z-10 flex items-center justify-center p-4 w-full h-screen">
         <div className="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center">
           <div className="text-center z-10 pointer-events-none">
