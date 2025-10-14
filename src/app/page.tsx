@@ -53,14 +53,14 @@ type Section = {
 };
 
 const sections: Section[] = [
-    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translateY(-50%)' } },
-    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%)' } },
-    { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '0%', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%)' } },
+    { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '0%', left: '50%', transform: 'translate(-50%, -50%)' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%)' } },
     { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translateY(-50%)' } },
     { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%)' } },
     { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%)' } },
     { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%)' } },
+    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translateY(-50%)' } },
+    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%)' } },
 ];
 
 
