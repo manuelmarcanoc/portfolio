@@ -54,13 +54,13 @@ type Section = {
 
 const sections: Section[] = [
     { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '0%', left: '50%', transform: 'translate(-50%, -50%)' } },
-    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%) rotate(45deg) ' } },
-    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translate(50%, -50%) rotate(90deg)' } },
-    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%) rotate(135deg)' } },
-    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%) rotate(180deg)' } },
-    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%) rotate(225deg)' } },
-    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translate(-50%, -50%) rotate(270deg)' } },
-    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%) rotate(315deg)' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%)' } },
+    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translate(50%, -50%)' } },
+    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%)' } },
+    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%)' } },
+    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translate(-50%, -50%)' } },
+    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%)' } },
 ];
 
 
@@ -195,10 +195,10 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
 
   const content = (
       <>
-        <div className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
-        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
-          <section.icon className="w-10 h-10 md:w-12 md:h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
-          <h3 className="font-heading text-xl md:text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
+        <div className="absolute w-24 h-24 md:w-28 md:h-28 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-2">
+          <section.icon className="w-8 h-8 md:w-10 md:h-10 text-foreground/80 mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
+          <h3 className="font-heading text-lg md:text-xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
         </div>
       </>
   );
