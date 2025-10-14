@@ -54,13 +54,13 @@ type Section = {
 
 const sections: Section[] = [
     { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '0%', left: '50%', transform: 'translate(-50%, -50%)' } },
-    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%)' } },
-    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translateY(-50%)' } },
-    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%)' } },
-    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%)' } },
-    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translateY(-50%)' } },
-    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%)' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: 'translate(50%, -50%) rotate(45deg) ' } },
+    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '50%', right: '0%', transform: 'translate(50%, -50%) rotate(90deg)' } },
+    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: 'translate(50%, 50%) rotate(135deg)' } },
+    { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%) rotate(180deg)' } },
+    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: 'translate(-50%, 50%) rotate(225deg)' } },
+    { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translate(-50%, -50%) rotate(270deg)' } },
+    { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '15%', left: '15%', transform: 'translate(-50%, -50%) rotate(315deg)' } },
 ];
 
 
@@ -187,17 +187,16 @@ const SectionContent: React.FC<{ section: SectionId | null }> = ({ section }) =>
 
 const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ section, onClick }) => {
   const commonClasses = "group absolute cursor-pointer flex flex-col items-center justify-center text-center float";
-  const [animationDelay, setAnimationDelay] = useState('0ms');
+  const [animationDelay, setAnimationDelay] = useState('0s');
 
   useEffect(() => {
     // This now only runs on the client, preventing the hydration error.
     setAnimationDelay(`${Math.random() * 1000}ms`);
   }, []);
 
-
   const content = (
       <>
-        <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:border-primary-foreground backdrop-blur-sm" />
+        <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
           <section.icon className="w-10 h-10 md:w-12 md:h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
           <h3 className="font-heading text-xl md:text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
@@ -250,8 +249,9 @@ export default function Home() {
       {/* Portfolio content */}
       <div className="relative z-10 flex items-center justify-center p-4 w-full h-screen">
         <div className="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center">
+        
           <div className="text-center z-10 pointer-events-none">
-            <h1 className="text-5xl md:text-6xl font-script text-primary" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
+            <h1 className="text-7xl md:text-8xl font-heading text-primary" style={{ textShadow: '3px 3px 0px hsl(var(--secondary))' }}>
               {portfolioData.name}
             </h1>
             <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
@@ -272,7 +272,7 @@ export default function Home() {
       <Dialog open={activeSection !== null} onOpenChange={(isOpen) => !isOpen && setActiveSection(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="font-heading text-3xl">{getSectionTitle(activeSection)}</DialogTitle>
+            <DialogTitle className="font-heading text-3xl text-primary">{getSectionTitle(activeSection)}</DialogTitle>
           </DialogHeader>
           <div className="p-1 -mx-1">
             <div className="p-6 max-h-[70vh] overflow-y-auto">
@@ -280,8 +280,8 @@ export default function Home() {
             </div>
           </div>
           <DialogClose asChild>
-            <button className="absolute top-0 right-0 m-2 p-1 bg-[#c0c0c0] border-2 border-t-[#ffffff] border-l-[#ffffff] border-r-[#808080] border-b-[#808080] active:border-t-[#808080] active:border-l-[#808080] active:border-r-[#ffffff] active:border-b-[#ffffff]">
-                <X className="w-4 h-4" color='black' strokeWidth={1}/>
+             <button className="absolute top-2 right-2 p-1 text-foreground/70 hover:text-primary">
+                <X className="w-6 h-6" />
             </button>
           </DialogClose>
         </DialogContent>
