@@ -190,13 +190,12 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
   const [animationDelay, setAnimationDelay] = useState('0s');
 
   useEffect(() => {
-    // This now only runs on the client, preventing the hydration error.
     setAnimationDelay(`${Math.random() * 1000}ms`);
   }, []);
 
   const content = (
       <>
-        <div className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
+        <div className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-4">
           <section.icon className="w-10 h-10 md:w-12 md:h-12 text-foreground/80 mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
           <h3 className="font-heading text-xl md:text-2xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
