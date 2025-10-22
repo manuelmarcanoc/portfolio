@@ -54,13 +54,13 @@ type Section = {
 
 const sections: Section[] = [
     { id: 'github', label: 'GitHub', icon: GithubIcon, isLink: true, url: portfolioData.githubUrl, position: { top: '50%', right: '0%', transform: 'translateY(-50%)' } },
-    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '15%', right: '15%', transform: '' } },
+    { id: 'experience', label: 'Experiencia', icon: BriefcaseIcon, position: { top: '10%', right: '20%', transform: '' } },
     { id: 'cv', label: 'Descargar CV', icon: DownloadIcon, isLink: true, url: portfolioData.cvUrl, position: { top: '0', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '15%', right: '15%', transform: '' } },
+    { id: 'education', label: 'Educación', icon: GraduationCapIcon, position: { bottom: '10%', right: '20%', transform: '' } },
     { id: 'about', label: 'Sobre Mí', icon: AboutIcon, position: { bottom: '0%', left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '15%', left: '15%', transform: '' } },
+    { id: 'contact', label: 'Contacto', icon: MailIcon, position: { bottom: '10%', left: '20%', transform: '' } },
     { id: 'skills', label: 'Habilidades', icon: CodeIcon, position: { top: '50%', left: '0%', transform: 'translateY(-50%)' } },
-    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '15%', left: '15%', transform: '' } },
+    { id: 'languages', label: 'Idiomas', icon: LanguagesIcon, position: { top: '10%', left: '20%', transform: '' } },
 ];
 
 
@@ -195,7 +195,7 @@ const SectionItem: React.FC<{section: Section, onClick: () => void}> = ({ sectio
 
   const content = (
       <>
-        <div className="absolute w-24 h-24 md:w-28 md:h-28 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-primary/80 group-hover:text-primary-foreground backdrop-blur-sm" />
+        <div className="absolute w-24 h-24 md:w-28 md:h-28 rounded-full bg-secondary/80 border border-border shadow-lg transition-all duration-300 group-hover:bg-yellow-400/80 group-hover:text-primary-foreground backdrop-blur-sm" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full p-2">
           <section.icon className="w-8 h-8 md:w-10 md:h-10 text-foreground/80 mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary-foreground" />
           <h3 className="font-heading text-lg md:text-xl text-foreground/90 group-hover:text-primary-foreground">{section.label}</h3>
