@@ -251,7 +251,7 @@ export default function Home() {
     '#A78BFA', // violet-400
   ];
 
-  const multicolorName = portfolioData.name.split('').map((char, index) => (
+  const multicolorTitle = portfolioData.title.split('').map((char, index) => (
     <span
       key={index}
       style={{
@@ -273,11 +273,11 @@ export default function Home() {
         <div className="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center">
         
           <div className="text-center z-10 pointer-events-none">
-            <h1 className="text-6xl md:text-8xl font-display font-bold" style={{ textShadow: '2px 2px 0px hsl(var(--secondary) / 0.5)', letterSpacing: '-0.05em' }}>
-              {multicolorName}
+            <h1 className="text-6xl md:text-8xl font-display font-bold" style={{ textShadow: '2px 2px 0px hsl(var(--secondary) / 0.5)', letterSpacing: '-0.05em', color: '#FBBF24' }}>
+              {portfolioData.name}
             </h1>
             <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
-              {portfolioData.title}
+              {multicolorTitle}
             </p>
           </div>
 
