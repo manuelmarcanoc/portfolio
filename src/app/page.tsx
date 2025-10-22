@@ -239,6 +239,29 @@ export default function Home() {
     const section = sections.find(s => s.id === sectionId);
     return section ? section.label : '';
   };
+
+  const nameColors = [
+    '#FBBF24', // yellow-400
+    '#60A5FA', // blue-400
+    '#C4B5FD', // violet-300
+    '#F87171', // red-400
+    '#4ADE80', // green-400
+    '#F97316', // orange-500
+    '#22D3EE', // cyan-400
+    '#A78BFA', // violet-400
+  ];
+
+  const multicolorName = portfolioData.name.split('').map((char, index) => (
+    <span
+      key={index}
+      style={{
+        color: char === ' ' ? 'transparent' : nameColors[index % nameColors.length],
+        display: 'inline-block',
+      }}
+    >
+      {char}
+    </span>
+  ));
   
   return (
     <main className="min-h-screen relative overflow-hidden font-body text-foreground">
@@ -250,8 +273,8 @@ export default function Home() {
         <div className="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center">
         
           <div className="text-center z-10 pointer-events-none">
-            <h1 className="text-7xl md:text-8xl font-heading text-primary" style={{ textShadow: '3px 3px 0px hsl(var(--secondary))' }}>
-              {portfolioData.name}
+            <h1 className="text-7xl md:text-8xl font-display font-bold" style={{ textShadow: '2px 2px 0px hsl(var(--secondary) / 0.5)' }}>
+              {multicolorName}
             </h1>
             <p className="text-3xl md:text-4xl text-foreground mt-2 font-heading tracking-wider">
               {portfolioData.title}
@@ -288,5 +311,3 @@ export default function Home() {
     </main>
   );
 }
-
-    

@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         heading: ['var(--font-heading)', 'monospace'],
         body: ['var(--font-body)', 'sans-serif'],
+        display: ['var(--font-display)', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
