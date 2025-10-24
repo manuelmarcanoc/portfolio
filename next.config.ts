@@ -1,41 +1,21 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Exporta el sitio como HTML estático (necesario para GitHub Pages)
-  output: 'export',
+  output: "export",
 
-  // BasePath: nombre del repositorio, para que las rutas funcionen
-  basePath: '/portfolio',
+  // BasePath: nombre del repositorio
+  basePath: "/portfolio",
 
-  // Corrige las rutas internas en GitHub Pages
-  assetPrefix: '/portfolio/',
+  // Asegura que los recursos se carguen desde /portfolio/
+  assetPrefix: "/portfolio/",
 
-  // Desactiva optimización de imágenes (GitHub Pages no la soporta)
+  // Desactiva la optimización de imágenes (GitHub Pages no la soporta)
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**',
-      },
-    ],
   },
 
-  // Evita que TypeScript o ESLint detengan el build
+  // Ignora errores de TS y ESLint al compilar
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
 };
