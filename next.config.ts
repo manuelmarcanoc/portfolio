@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Opcional: evita que ESLint o TypeScript detengan el build
+  // Evita que TypeScript o ESLint detengan el build por advertencias
   typescript: {
     ignoreBuildErrors: true,
   },
