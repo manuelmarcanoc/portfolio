@@ -7,7 +7,10 @@ const nextConfig: NextConfig = {
   // BasePath: nombre del repositorio, para que las rutas funcionen
   basePath: '/portfolio',
 
-  // Desactiva la optimización de imágenes (GitHub Pages no la soporta)
+  // Corrige las rutas internas en GitHub Pages
+  assetPrefix: '/portfolio/',
+
+  // Desactiva optimización de imágenes (GitHub Pages no la soporta)
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -32,13 +35,9 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Evita que TypeScript o ESLint detengan el build por advertencias
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Evita que TypeScript o ESLint detengan el build
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
 };
 
 export default nextConfig;
