@@ -24,7 +24,7 @@ export const portfolioData = {
   name: 'Manuel Marcano',
   title: 'Software Developer',
   about:
-    'Desarrollador de software con formación en Desarrollo de Aplicaciones Multiplataforma (DAM) y pasión por el diseño UX/UI. Experiencia en atención al cliente y hostelería, lo que me aporta habilidades de comunicación, organización y trabajo en equipo. Creativo y orientado a resultados, busco aportar soluciones digitales innovadoras.',
+    'Desarrollador de software con formación en Desarrollo de Aplicaciones Multiplataforma (DAM). Experiencia en atención al cliente y hostelería, lo que me aporta habilidades de comunicación, organización y trabajo en equipo. Creativo y orientado a resultados, busco aportar soluciones digitales innovadoras.',
   contact: {
     email: 'manuelmarcanocubillas@gmail.com',
     phone: '+34 653 097 798',
@@ -32,8 +32,8 @@ export const portfolioData = {
   },
   education: [
     {
-      period: '2024–2025',
-      institution: 'Prat FP',
+      period: '2024–2026',
+      institution: 'Prat Formació',
       title: 'Desarrollo de Aplicaciones Multiplataforma',
     },
     {
@@ -43,8 +43,8 @@ export const portfolioData = {
     },
     {
       period: '2025',
-      institution: 'Domestika',
-      title: 'Especialización en diseño UX/UI',
+      institution: 'ISTQB',
+      title: 'QA Foundation ',
     },
   ] as EducationItem[],
   experience: [
